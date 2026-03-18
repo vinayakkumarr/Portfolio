@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vinayak Kumar — Web Developer & BCA Student. Building performant, accessible web experiences." />
+  <meta name="author" content="Vinayak Kumar" />
+  <title>Vinayak Kumar — Portfolio</title>
+
+  <!-- Google Fonts: Cormorant (headings) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+  ============================================================ -->
+  <nav id="navbar" class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container">
+
+      <!-- Brand / Logo -->
+      <a class="navbar-brand" href="#home" aria-label="Vinayak Kumar — Home">
+        <span class="brand-initials">VA</span>
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
+      </button>
+
+      <!-- Nav Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- Decorative label -->
+        <p class="hero-label fade-in-up" style="--delay: 0.1s">
+          <span class="label-line"></span>
+          Available for opportunities
+          <span class="label-line"></span>
+        </p>
+
+        <!-- Main heading -->
+        <h1 class="hero-name fade-in-up" style="--delay: 0.25s">
+          Vinayak<br /><em>Kumar</em>
+        </h1>
+
+        <!-- Subtitle with typing effect -->
+        <p class="hero-subtitle fade-in-up" style="--delay: 0.4s">
+          <span id="typed-text"></span><span class="cursor" aria-hidden="true">|</span>
+        </p>
+
+        <!-- Intro paragraph -->
+        <p class="hero-intro fade-in-up" style="--delay: 0.55s">
+          I craft thoughtful, performant web experiences — blending code<br class="d-none d-md-inline" />
+          with considered design to build things people actually enjoy using.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta fade-in-up" style="--delay: 0.7s">
+          <a href="#projects" class="btn btn-primary-custom">View Projects</a>
+          <a href="#contact" class="btn btn-outline-custom">Contact Me</a>
+        </div>
+
+        <!-- Scroll cue -->
+        <div class="scroll-cue fade-in-up" style="--delay: 1s" aria-hidden="true">
+          <span class="scroll-line"></span>
+          <span class="scroll-text">Scroll</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Background grain texture overlay -->
+    <div class="hero-grain" aria-hidden="true"></div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT SECTION
+  ============================================================ -->
+  <section id="about" class="section-block">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="section-header reveal">
+        <span class="section-number">01</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="row align-items-center gy-5">
+
+        <!-- Left: Bio text -->
+        <div class="col-lg-6 reveal">
+          <div class="about-text">
+            <p class="about-lead">
+              I’m a web developer and bachelor of computer applications student with a deep curiosity
+              for building things that live at the intersection of technology and craft.
+            </p>
+            <p class="about-body">
+              My approach to development is grounded in clarity — clear code, clear
+              interfaces, clear purpose. I believe the best digital experiences are
+              the ones that get out of the way and let people do what they came to do.
+            </p>
+            <!-- <p class="about-body">
+              When I'm not writing code, you'll find me reading about design systems,
+              experimenting with type, or contributing to open-source projects I care about.
+            </p> -->
+            <a href="#contact" class="about-link">
+              Let's talk <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Highlight cards -->
+        <div class="col-lg-6 reveal" style="--delay: 0.15s">
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="highlight-card">
+                <div class="highlight-icon">
+                  <i class="bi bi-puzzle"></i>
+                </div>
+                <div class="highlight-content">
+                  <h3 class="highlight-title">Problem Solver</h3>
+                  <p class="highlight-desc">I dissect complex challenges into their smallest moving parts, then rebuild them cleanly.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="highlight-card">
+                <div class="highlight-icon">
+                  <i class="bi bi-code-slash"></i>
+                </div>
+                <div class="highlight-content">
+                  <h3 class="highlight-title">Web Developer</h3>
+                  <p class="highlight-desc">From semantic HTML to interactive JS, I build responsive, accessible, well-structured web experiences.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="highlight-card">
+                <div class="highlight-icon">
+                  <i class="bi bi-lightbulb"></i>
+                </div>
+                <div class="highlight-content">
+                  <h3 class="highlight-title">Tech Enthusiast</h3>
+                  <p class="highlight-desc">Always learning — currently exploring full-stack architectures and developer tooling.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EDUCATION SECTION
+  ============================================================ -->
+  <section id="education" class="section-block section-tinted">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="section-header reveal">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Education</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="edu-timeline">
+
+        <div class="edu-item reveal">
+          <div class="edu-marker">
+            <div class="edu-dot"></div>
+            <div class="edu-line"></div>
+          </div>
+          <div class="edu-content">
+            <div class="edu-meta">
+              <span class="edu-year">2023 – Present</span>
+              <span class="edu-badge">Current</span>
+            </div>
+            <h3 class="edu-degree">Bachelor of Computer Application</h3>
+            <p class="edu-institution">
+              <i class="bi bi-building me-1"></i>
+              NSHM College of Management and Technology, Durgapur
+            </p>
+            <p class="edu-location">
+              <i class="bi bi-geo-alt me-1"></i>
+              Durgapur, West Bengal
+            </p>
+            <!-- <p class="edu-notes">
+              Relevant coursework: Data Structures, Algorithms, Web Development,
+              Database Systems, Operating Systems, Computer Networking.
+            </p> -->
+          </div>
+        </div>
+
+        <div class="edu-item reveal" style="--delay: 0.1s">
+          <div class="edu-marker">
+            <div class="edu-dot"></div>
+            <div class="edu-line"></div>
+          </div>
+          <div class="edu-content">
+            <div class="edu-meta">
+              <span class="edu-year">2021 – 2023</span>
+            </div>
+            <h3 class="edu-degree">Higher Secondary Education(12th)</h3>
+            <p class="edu-institution">
+              <i class="bi bi-building me-1"></i>
+              CHHATRAPATI SHIVAJI CHILDREN SR SEC SCH, Shivpura, Kota
+            </p>
+            <p class="edu-location">
+              <i class="bi bi-geo-alt me-1"></i>
+              Kota, Rajasthan
+            </p>
+            <!-- <p class="edu-notes">
+              Graduated with distinction. Mathematics, Physics, and Computer Science focus.
+              Participated in regional coding competitions.
+            </p> -->
+          </div>
+        </div>
+
+        <div class="edu-item reveal" style="--delay: 0.2s">
+          <div class="edu-marker">
+            <div class="edu-dot"></div>
+          </div>
+          <div class="edu-content">
+            <div class="edu-meta">
+              <span class="edu-year">2020</span>
+            </div>
+            <h3 class="edu-degree">Secondary School Education(10th)</h3>
+            <p class="edu-institution">
+              <i class="bi bi-building me-1"></i>
+              DAV Public School, Malighat, Muzaffarpur
+            </p>
+            <p class="edu-location">
+              <i class="bi bi-geo-alt me-1"></i>
+              Muzaffarpur, Bihar
+            </p>
+            <!-- <p class="edu-notes">
+              300+ hours covering HTML, CSS, accessibility, responsive design principles,
+              and modern layout techniques.
+            </p> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SKILLS SECTION
+  ============================================================ -->
+  <section id="skills" class="section-block">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="section-header reveal">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Languages -->
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="skill-group">
+            <div class="skill-group-header">
+              <i class="bi bi-terminal skill-group-icon"></i>
+              <h3 class="skill-group-title">Languages</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">SQL</span>
+          
+              <span class="skill-tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web Development -->
+        <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.08s">
+          <div class="skill-group">
+            <div class="skill-group-header">
+              <i class="bi bi-browser-chrome skill-group-icon"></i>
+              <h3 class="skill-group-title">Web Development</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">Bootstrap</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">PHP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.16s">
+          <div class="skill-group">
+            <div class="skill-group-header">
+              <i class="bi bi-database skill-group-icon"></i>
+              <h3 class="skill-group-title">Database</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">MySQL</span>
+              <!-- <span class="skill-tag">Schema Design</span>
+              <span class="skill-tag">Query Optimization</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.24s">
+          <div class="skill-group">
+            <div class="skill-group-header">
+              <i class="bi bi-tools skill-group-icon"></i>
+              <h3 class="skill-group-title">Tools</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">GitHub</span>
+              <span class="skill-tag">VS Code</span>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Competencies -->
+        <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.32s">
+          <div class="skill-group">
+            <div class="skill-group-header">
+              <i class="bi bi-cpu skill-group-icon"></i>
+              <h3 class="skill-group-title">Core Competencies</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Operating Systems</span>
+              <span class="skill-tag">Networking</span>
+              <span class="skill-tag">Data Structures</span>
+              <span class="skill-tag">Algorithms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.4s">
+          <div class="skill-group">
+            <div class="skill-group-header">
+              <i class="bi bi-people skill-group-icon"></i>
+              <h3 class="skill-group-title">Soft Skills</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Communication</span>
+              <span class="skill-tag">Team Collaboration</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Self-Learning</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PROJECTS SECTION
+  ============================================================ -->
+  <section id="projects" class="section-block section-tinted">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="section-header reveal">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Project Card 1 -->
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-img-placeholder project-img-1" aria-label="Task Manager App screenshot placeholder">
+                <div class="placeholder-art">
+                  <div class="art-bar art-bar-1"></div>
+                  <div class="art-bar art-bar-2"></div>
+                  <div class="art-bar art-bar-3"></div>
+                  <div class="art-circle"></div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <span class="project-category">Full Stack</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Task Manager App</h3>
+              <p class="project-desc">
+                A full-stack task management application with user authentication,
+                real-time updates, and a clean, distraction-free interface.
+              </p>
+              <div class="project-tech">
+                <span>PHP</span><span>MySQL</span><span>Bootstrap</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-btn project-btn-primary" aria-label="View live demo of Task Manager App">
+                  <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
+                </a>
+                <a href="#" class="project-btn project-btn-outline" aria-label="View GitHub repository for Task Manager App">
+                  <i class="bi bi-github me-1"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Project Card 2 -->
+        <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.1s">
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-img-placeholder project-img-2" aria-label="Weather Dashboard screenshot placeholder">
+                <div class="placeholder-art">
+                  <div class="art-grid">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <span class="project-category">Frontend</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Weather Dashboard</h3>
+              <p class="project-desc">
+                A responsive weather dashboard consuming a public API, displaying
+                forecasts, historical trends, and location-based data beautifully.
+              </p>
+              <div class="project-tech">
+                <span>JavaScript</span><span>REST API</span><span>CSS3</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-btn project-btn-primary" aria-label="View live demo of Weather Dashboard">
+                  <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
+                </a>
+                <a href="#" class="project-btn project-btn-outline" aria-label="View GitHub repository for Weather Dashboard">
+                  <i class="bi bi-github me-1"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Project Card 3 -->
+        <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.2s">
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-img-placeholder project-img-5" aria-label="Portfolio Website screenshot placeholder">
+                <div class="placeholder-art">
+                  <div class="art-wave">
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <span class="project-category">Frontend</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Portfolio Website</h3>
+              <p class="project-desc">
+                This very website — designed and built with a focus on clean layout,
+                editorial typography, and calm user experience.
+              </p>
+              <div class="project-tech">
+                <span>HTML</span><span>CSS</span><span>JS</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-btn project-btn-primary" aria-label="View live demo of Portfolio Website">
+                  <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
+                </a>
+                <a href="#" class="project-btn project-btn-outline" aria-label="View GitHub repository for Portfolio Website">
+                  <i class="bi bi-github me-1"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT SECTION
+  ============================================================ -->
+  <section id="contact" class="section-block">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="section-header reveal">
+        <span class="section-number">05</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="row gy-5 align-items-start">
+
+        <!-- Left: Text + direct links -->
+        <div class="col-lg-5 reveal">
+          <div class="contact-intro">
+            <p class="contact-lead">
+              Have a project in mind, or just want to say hello?
+            </p>
+            <p class="contact-body">
+              I'm currently open to new opportunities — whether it's a freelance project,
+              internship, or full-time role. My inbox is always open.
+            </p>
+
+            <div class="contact-links">
+              <a href="mailto:vinayakkumar.wrk@gmail.com" class="contact-link-item">
+                <div class="contact-link-icon"><i class="bi bi-envelope"></i></div>
+                <div>
+                  <span class="contact-link-label">Email</span>
+                  <span class="contact-link-value">vinayakkumar.wrk@gmail.com</span>
+                </div>
+              </a>
+              <a href="https://github.com/vinayakkumarr" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                <div class="contact-link-icon"><i class="bi bi-github"></i></div>
+                <div>
+                  <span class="contact-link-label">GitHub</span>
+                  <span class="contact-link-value">github.com/vinayakkumarr</span>
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/vinayakkrr/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                <div class="contact-link-icon"><i class="bi bi-linkedin"></i></div>
+                <div>
+                  <span class="contact-link-label">LinkedIn</span>
+                  <span class="contact-link-value">linkedin.com/in/vinayakkrr</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Contact Form (Web3Forms) -->
+        <div class="col-lg-7 reveal" style="--delay: 0.15s">
+          <form
+            id="contact-form"
+            class="contact-form"
+            novalidate
+            aria-label="Contact form"
+          >
+            <!--
+              Web3Forms hidden fields
+              access_key  : your unique form key
+              subject     : email subject that lands in your inbox
+              from_name   : sender display name in email notifications
+              redirect    : "false" keeps page-reload submissions on the same page
+            -->
+            <input type="hidden" name="access_key"  value="71571ebd-56ba-4ed1-a7f0-d5fdd5d95be3" />
+            <input type="hidden" name="subject"     value="New contact from Portfolio" />
+            <input type="hidden" name="from_name"   value="Portfolio Contact Form" />
+            <input type="hidden" name="redirect"    value="false" />
+
+            <!-- Honeypot spam protection (must stay hidden & unchecked) -->
+            <input
+              type="checkbox"
+              name="botcheck"
+              style="display:none;"
+              tabindex="-1"
+              autocomplete="off"
+            />
+
+            <div class="row g-3">
+
+              <!-- Name -->
+              <div class="col-sm-6">
+                <div class="form-group-custom">
+                  <label for="name" class="form-label-custom">Name <span class="required-mark" aria-hidden="true">*</span></label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control-custom"
+                    placeholder="Your full name"
+                    autocomplete="name"
+                    required
+                    minlength="2"
+                  />
+                  <span class="field-error" id="name-error" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-sm-6">
+                <div class="form-group-custom">
+                  <label for="email" class="form-label-custom">Email <span class="required-mark" aria-hidden="true">*</span></label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control-custom"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                  />
+                  <span class="field-error" id="email-error" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <!-- Subject -->
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label for="subject-field" class="form-label-custom">Subject <span class="required-mark" aria-hidden="true">*</span></label>
+                  <input
+                    type="text"
+                    id="subject-field"
+                    name="subject_line"
+                    class="form-control-custom"
+                    placeholder="What's this about?"
+                    required
+                    minlength="3"
+                  />
+                  <span class="field-error" id="subject-error" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label for="message" class="form-label-custom">Message <span class="required-mark" aria-hidden="true">*</span></label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-control-custom"
+                    rows="5"
+                    placeholder="Tell me a bit about your project or idea…"
+                    required
+                    minlength="20"
+                  ></textarea>
+                  <span class="field-error" id="message-error" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="col-12">
+                <button type="submit" class="btn-primary-custom w-100" id="submit-btn" aria-live="polite">
+                  <span class="btn-text">Send Message</span>
+                  <i class="bi bi-send ms-2" aria-hidden="true"></i>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Status message (success / error) -->
+            <div id="form-status" class="form-status-msg" role="status" aria-live="polite" aria-atomic="true"></div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <span class="footer-initials">VA</span>
+          <p class="footer-tagline">Crafted with care &amp; precision.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="footer-social">
+          <a href="https://github.com/vinayakkumarr" target="_blank" rel="noopener noreferrer" aria-label="Vinayak Kumar on GitHub">
+            <i class="bi bi-github" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/vinayakkrr/" target="_blank" rel="noopener noreferrer" aria-label="Vinayak Kumar on LinkedIn">
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:vinayakkumar.wrk@gmail.com" aria-label="Email Vinayak Kumar">
+            <i class="bi bi-envelope" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="year"></span> Vinayak Kumar &mdash;
+          Built with HTML, CSS, Bootstrap &amp; JavaScript
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" defer></script>
+
+  <!-- Portfolio Scripts -->
+  <script src="script.js" defer></script>
+
+</body>
+</html>
