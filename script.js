@@ -2,13 +2,12 @@
  * PORTFOLIO — SCRIPT.JS
  * ─────────────────────────────────────────────────────────────
  * Features:
- *   1. Navbar   — scrolled state + active section link tracking
- *   2. Typed    — animated typing effect in hero subtitle
- *   3. Reveal   — scroll-triggered fade-in via IntersectionObserver
- *   4. Scroll   — smooth scrolling with fixed-nav offset
- *   5. Contact  — client-side validation + Web3Forms AJAX submit
- *   6. Footer   — current year auto-update
- *   7. Hero     — ensure animated elements stay visible post-animation
+ *   1. Navbar    — scrolled state + active section link tracking
+ *   2. Typed     — animated typing effect in hero subtitle
+ *   3. Reveal    — scroll-triggered fade-in via IntersectionObserver
+ *   4. Scroll    — smooth scrolling with fixed-nav offset
+ *   5. Contact   — client-side validation + Web3Forms AJAX submit
+ *   6. Footer    — current year auto-update
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -379,21 +378,4 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 (function setYear() {
   const el = $('#year');
   if (el) el.textContent = new Date().getFullYear();
-})();
-
-
-/* ─────────────────────────────────────────────────────────────
-   7. HERO — Keep animated elements visible after animation ends
-───────────────────────────────────────────────────────────── */
-(function lockHeroVisibility() {
-  $$('.hero-section .fade-in-up').forEach((el) => {
-    el.addEventListener(
-      'animationend',
-      () => {
-        el.style.opacity   = '1';
-        el.style.transform = 'translateY(0)';
-      },
-      { once: true }
-    );
-  });
 })();

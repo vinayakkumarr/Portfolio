@@ -7,16 +7,20 @@
   <meta name="author" content="Vinayak Kumar" />
   <title>Vinayak Kumar — Portfolio</title>
 
-  <!-- Google Fonts: Cormorant (headings) + DM Sans (body) -->
+  <!-- Google Fonts: Cormorant + DM Sans + Plus Jakarta Sans + Syne -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Plus+Jakarta+Sans:wght@500;800&family=Syne:wght@700&display=swap" rel="stylesheet" />
 
   <!-- Bootstrap 5 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
 
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Preload Bespoke Brand Display Fonts (Eliminates FOUT/Jitter) -->
+  <link rel="preload" href="assets/brand/Aurelia.woff" as="font" type="font/woff" crossorigin />
+  <link rel="preload" href="assets/brand/Qaveria-Regular.otf" as="font" type="font/otf" crossorigin />
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css" />
@@ -84,7 +88,7 @@
 
         <!-- Main heading -->
         <h1 class="hero-name fade-in-up" style="--delay: 0.25s">
-          Vinayak<br /><em>Kumar</em>
+          <span class="hero-first"><span class="name-flourish">V</span>inayak</span><br /><span class="hero-last"><span class="name-flourish">K</span>umar</span>
         </h1>
 
         <!-- Subtitle with typing effect -->
@@ -108,10 +112,10 @@
         </div>
 
         <!-- Scroll cue -->
-        <div class="scroll-cue fade-in-up" style="--delay: 1s" aria-hidden="true">
+        <a href="#about" class="scroll-cue fade-in-up" aria-label="Scroll to About section" style="--delay: 1s">
           <span class="scroll-line"></span>
           <span class="scroll-text">Scroll</span>
-        </div>
+        </a>
 
       </div>
     </div>
@@ -129,7 +133,6 @@
 
       <!-- Section header -->
       <div class="section-header reveal">
-        <span class="section-number">01</span>
         <h2 class="section-title">About Me</h2>
         <div class="section-rule"></div>
       </div>
@@ -148,10 +151,6 @@
               interfaces, clear purpose. I believe the best digital experiences are
               the ones that get out of the way and let people do what they came to do.
             </p>
-            <!-- <p class="about-body">
-              When I'm not writing code, you'll find me reading about design systems,
-              experimenting with type, or contributing to open-source projects I care about.
-            </p> -->
             <a href="#contact" class="about-link">
               Let's talk <i class="bi bi-arrow-right ms-1"></i>
             </a>
@@ -210,7 +209,6 @@
 
       <!-- Section header -->
       <div class="section-header reveal">
-        <span class="section-number">02</span>
         <h2 class="section-title">Education</h2>
         <div class="section-rule"></div>
       </div>
@@ -237,10 +235,6 @@
               <i class="bi bi-geo-alt me-1"></i>
               Durgapur, West Bengal
             </p>
-            <!-- <p class="edu-notes">
-              Relevant coursework: Data Structures, Algorithms, Web Development,
-              Database Systems, Operating Systems, Computer Networking.
-            </p> -->
           </div>
         </div>
 
@@ -262,10 +256,6 @@
               <i class="bi bi-geo-alt me-1"></i>
               Kota, Rajasthan
             </p>
-            <!-- <p class="edu-notes">
-              Graduated with distinction. Mathematics, Physics, and Computer Science focus.
-              Participated in regional coding competitions.
-            </p> -->
           </div>
         </div>
 
@@ -286,10 +276,6 @@
               <i class="bi bi-geo-alt me-1"></i>
               Muzaffarpur, Bihar
             </p>
-            <!-- <p class="edu-notes">
-              300+ hours covering HTML, CSS, accessibility, responsive design principles,
-              and modern layout techniques.
-            </p> -->
           </div>
         </div>
 
@@ -306,7 +292,6 @@
 
       <!-- Section header -->
       <div class="section-header reveal">
-        <span class="section-number">03</span>
         <h2 class="section-title">Skills</h2>
         <div class="section-rule"></div>
       </div>
@@ -357,8 +342,6 @@
             <div class="skill-tags">
               <span class="skill-tag">MySQL</span>
               <span class="skill-tag">MongoDB</span>
-              <!-- <span class="skill-tag">Schema Design</span>
-              <span class="skill-tag">Query Optimization</span> -->
             </div>
           </div>
         </div>
@@ -424,7 +407,6 @@
 
       <!-- Section header -->
       <div class="section-header reveal">
-        <span class="section-number">04</span>
         <h2 class="section-title">Projects</h2>
         <div class="section-rule"></div>
       </div>
@@ -435,12 +417,21 @@
         <div class="col-md-6 col-lg-4 reveal">
           <div class="project-card">
             <div class="project-image">
-              <div class="project-img-placeholder project-img-1" aria-label="Resume vs Job Description Matcher screenshot placeholder">
-                <div class="placeholder-art">
-                  <div class="art-bar art-bar-1"></div>
-                  <div class="art-bar art-bar-2"></div>
-                  <div class="art-bar art-bar-3"></div>
-                  <div class="art-circle"></div>
+              <div class="project-brand-hero brand-hero-calibrate" aria-hidden="true">
+                <div class="brand-grid-bg"></div>
+                <div class="brand-ambient-glow"></div>
+                <div class="brand-content">
+                  <div class="brand-icon-wrap">
+                    <svg class="brand-icon-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <!-- Calibrate Official Monogram Squircle Badge -->
+                      <rect width="120" height="120" rx="28" fill="#FFFFFF"/>
+                      <rect width="118" height="118" x="1" y="1" rx="27" fill="none" stroke="rgba(0, 0, 0, 0.08)" stroke-width="1.5"/>
+                      <path d="M91.47 66.57H90.73C90.73 66.57 86.27 77.81 75.59 81.99V43.9C76.05 43.9 76.7 43.9 77.26 43.9C92.12 44 94.82 29.13 93.98 28.11C93.98 28.11 91.75 33.13 84.88 33.13C75.86 33.13 73.08 23 73.08 23C73.08 23 63.04 38.89 41.77 47.53C44.93 34.33 55.61 27.65 60.35 27.65C60.35 27.65 60.16 26.34 55.52 26.34C47.44 26.34 38.61 31.18 32.94 39.82C31.18 37.96 29.23 37.59 27.83 37.59C26.63 37.59 25.88 37.86 25.88 37.86C30.53 40.56 28.58 49.38 28.58 49.38C27.55 53.1 27.09 56.91 27.09 61.28C27.09 73.45 36.1 95 59.79 95C87.57 95 91.47 66.57 91.47 66.57ZM73.91 82.46C72.06 83.2 69.83 83.48 67.69 83.48C61 83.48 55.15 81.53 50.78 78.18C53.47 76.61 60.54 72.15 63.32 65.27C63.32 65.27 64.16 62.76 64.16 59.23V37.86C65.18 39.17 68.34 42.51 73.91 43.53ZM40.93 55.24C40.93 53.1 41.12 51.06 41.4 49.2C44.93 48.18 49.29 46.04 53.01 43.9V72.33C53.01 75.12 51.15 76.61 49.94 77.44C44.28 72.42 40.93 64.81 40.93 55.24Z" fill="#EA580C"/>
+                    </svg>
+                  </div>
+                  <div class="brand-typography">
+                    <span class="brand-wordmark cal-wordmark"><span class="cal-brand-c">C</span><span class="cal-brand-body">alibrate</span></span>
+                  </div>
                 </div>
               </div>
               <div class="project-overlay">
@@ -448,18 +439,18 @@
               </div>
             </div>
             <div class="project-body">
-              <h3 class="project-title">Resume vs Job Description Matcher</h3>
+              <h3 class="project-title">Calibrate — Resume vs. Job Description Matcher</h3>
               <p class="project-desc">
-                Engineered a semantic resume parsing and matching engine evaluating candidates against job requirements using multi-factor weighted scoring. Integrated Gemini API with strict schema validation to extract structured attributes, cite source-text evidence, and deliver actionable rewrite suggestions.
+                An automated evaluation workbench designed to objectively analyze technical resumes against job requirements. Features layout-aware text extraction, RapidFuzz verbatim evidence verification to prevent unproven claims, deterministic scoring with essential-skill gating, and structured, impact-driven bullet rewrites. Built with a decoupled PHP gateway, a background Python processing engine, and MySQL SHA-256 requirement caching to optimize external LLM API usage.
               </p>
               <div class="project-tech">
-                <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>Gemini API</span>
+                <span>Python</span><span>PHP</span><span>MySQL</span><span>LLM API</span>
               </div>
               <div class="project-links">
-                <a href="#" class="project-btn project-btn-primary" aria-label="View live demo of Resume vs Job Description Matcher">
+                <a href="https://calibrate-workbench.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-primary" aria-label="View live demo of Calibrate">
                   <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
                 </a>
-                <a href="#" class="project-btn project-btn-outline" aria-label="View GitHub repository for Resume vs Job Description Matcher">
+                <a href="https://github.com/vinayakkumarr/calibrate-resume-jd-matcher" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-outline" aria-label="View GitHub repository for Calibrate">
                   <i class="bi bi-github me-1"></i> GitHub
                 </a>
               </div>
@@ -472,11 +463,23 @@
         <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.1s">
           <div class="project-card">
             <div class="project-image">
-              <div class="project-img-placeholder project-img-2" aria-label="Algorithm Visualizer screenshot placeholder">
-                <div class="placeholder-art">
-                  <div class="art-grid">
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
+              <div class="project-brand-hero brand-hero-algo" aria-hidden="true">
+                <div class="brand-grid-bg"></div>
+                <div class="brand-ambient-glow"></div>
+                <div class="brand-content">
+                  <div class="brand-icon-wrap">
+                    <svg class="brand-icon-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <rect x="64" y="0" width="56" height="56" rx="4" fill="#1E1E1E"/>
+                      <rect x="64" y="64" width="56" height="56" rx="4" fill="#1E1E1E"/>
+                      <rect x="0" y="64" width="56" height="56" rx="4" fill="#1E1E1E"/>
+                      <rect x="32" y="0" width="24" height="24" rx="2" fill="#1E1E1E"/>
+                      <rect x="32" y="32" width="24" height="24" rx="2" fill="#1E1E1E"/>
+                      <rect x="0" y="32" width="24" height="24" rx="2" fill="#1E1E1E"/>
+                      <circle cx="12" cy="12" r="12" fill="#0055FF"/>
+                    </svg>
+                  </div>
+                  <div class="brand-typography">
+                    <span class="brand-wordmark av-wordmark"><span class="av-bold">ALGORITHM</span> <span class="av-light">visualizer</span></span>
                   </div>
                 </div>
               </div>
@@ -510,10 +513,22 @@
         <div class="col-md-6 col-lg-4 reveal" style="--delay: 0.2s">
           <div class="project-card">
             <div class="project-image">
-              <div class="project-img-placeholder project-img-5" aria-label="Smart Split screenshot placeholder">
-                <div class="placeholder-art">
-                  <div class="art-wave">
-                    <div></div><div></div><div></div>
+              <div class="project-brand-hero brand-hero-smartsplit" aria-hidden="true">
+                <div class="brand-grid-bg"></div>
+                <div class="brand-ambient-glow"></div>
+                <div class="brand-content">
+                  <div class="brand-icon-wrap">
+                    <svg class="brand-icon-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <!-- Wing 1: Settlement Mint -->
+                      <path d="M 24 38 C 24 25.85 33.85 16 46 16 L 86 16 C 98.15 16 108 25.85 108 38 L 108 46 C 108 56.5 99.5 65 89 65 L 66 65 L 48 47 L 82 47 C 85.3 47 88 44.3 88 41 L 88 35 C 88 31.7 85.3 29 82 29 L 46 29 C 41 29 37 33 37 38 Z" fill="#059669"/>
+                      <!-- Wing 2: Deep Charcoal on light canvas -->
+                      <g transform="rotate(180 60 60)">
+                        <path d="M 24 38 C 24 25.85 33.85 16 46 16 L 86 16 C 98.15 16 108 25.85 108 38 L 108 46 C 108 56.5 99.5 65 89 65 L 66 65 L 48 47 L 82 47 C 85.3 47 88 44.3 88 41 L 88 35 C 88 31.7 85.3 29 82 29 L 46 29 C 41 29 37 33 37 38 Z" fill="#1E1E1E"/>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="brand-typography">
+                    <span class="brand-wordmark ss-wordmark"><span class="ss-smart">Smart</span><span class="ss-split">Split</span></span>
                   </div>
                 </div>
               </div>
@@ -556,7 +571,6 @@
 
       <!-- Section header -->
       <div class="section-header reveal">
-        <span class="section-number">05</span>
         <h2 class="section-title">Contact</h2>
         <div class="section-rule"></div>
       </div>
@@ -596,14 +610,6 @@
                   <span class="contact-link-value">linkedin.com/in/vinayakkrr</span>
                 </div>
               </a>
-
-              <!-- <a href="assets/Vinayak_Kumar_Resume.pdf" target="_blank" class="contact-link-item">
-  <div class="contact-link-icon"><i class="bi bi-file-earmark-pdf"></i></div>
-  <div>
-    <span class="contact-link-label">Resume</span>
-    <span class="contact-link-value">View or Download CV</span>
-  </div>
-</a>   -->
               
             </div>
           </div>
@@ -765,7 +771,7 @@
 
       <div class="footer-bottom">
         <p>
-          &copy; <span id="year"></span> Vinayak Kumar &mdash;
+          &copy; <span id="year"></span> Vinayak Kumar <span class="footer-sep">&mdash;</span><br class="d-sm-none" />
           Built with HTML, CSS, Bootstrap &amp; JavaScript
         </p>
       </div>

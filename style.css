@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ==========================================================
    PORTFOLIO — STYLE.CSS
    Aesthetic: Warm editorial minimalism
@@ -5,6 +6,33 @@
    Color: Parchment white / Charcoal / Forest green accent
    ========================================================== */
 
+
+/* ----------------------------------------------------------
+   BESPOKE BRAND DISPLAY TYPEFACES
+---------------------------------------------------------- */
+@font-face {
+  font-family: 'Aurelia';
+  src: url('assets/brand/Aurelia.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Qaveria';
+  src: url('assets/brand/Qaveria-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Bugenvil';
+  src: url('assets/brand/Bugenvil.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ----------------------------------------------------------
    1. CSS CUSTOM PROPERTIES (Design Tokens)
@@ -22,8 +50,10 @@
   --clr-shadow:     rgba(30,30,30,0.07);
 
   /* Typography */
-  --font-head:  'Cormorant', Georgia, serif;
-  --font-body:  'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-display:  'Aurelia', 'Cormorant', Georgia, serif;
+  --font-flourish: 'Aurelia', 'Cormorant', Georgia, serif;
+  --font-head:     'Cormorant', Georgia, serif;
+  --font-body:     'DM Sans', 'Helvetica Neue', sans-serif;
 
   /* Spacing */
   --section-py: 7rem;
@@ -53,6 +83,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -113,18 +144,58 @@ section[id] {
   transition: border-color var(--dur-med) var(--ease),
               box-shadow var(--dur-med) var(--ease);
   z-index: 1000;
+  animation: navbarReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes navbarReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Brand initials subtle reveal */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  animation: navbarBrandReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+@keyframes navbarBrandReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Nav links graceful collective reveal */
+.navbar-nav {
+  animation: navLinksReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+@keyframes navLinksReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Scrolled state — JS adds this class */
 #navbar.scrolled {
   border-bottom-color: var(--clr-border);
   box-shadow: 0 1px 16px var(--clr-shadow);
-}
-
-/* Brand */
-.navbar-brand {
-  display: flex;
-  align-items: center;
 }
 
 .brand-initials {
@@ -270,15 +341,6 @@ section[id] {
   margin-bottom: 4.5rem;
 }
 
-.section-number {
-  font-family: var(--font-head);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--clr-accent);
-  letter-spacing: 0.12em;
-  flex-shrink: 0;
-}
-
 .section-title {
   font-family: var(--font-head);
   font-size: clamp(2rem, 4vw, 2.8rem);
@@ -319,56 +381,80 @@ section[id] {
 
 .hero-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* "Available" label */
 .hero-label {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  gap: 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
   color: var(--clr-accent);
   font-weight: 400;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .label-line {
   display: block;
-  width: 28px;
+  width: 32px;
   height: 1px;
   background: var(--clr-accent);
 }
 
-/* Big editorial name */
+/* Big editorial name — Haute Atelier Lockup (Grand Proportions & Pristine Elegance) */
 .hero-name {
-  font-family: var(--font-head);
-  font-size: clamp(4.5rem, 11vw, 9.5rem);
-  font-weight: 300;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--clr-text);
-  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(4.4rem, 8.2vw, 7.5rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: 0.015em;
+  color: #242220;
+  margin-bottom: 2rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero-name .hero-first {
+  display: inline-block;
+}
+
+.hero-name .hero-last {
+  display: inline-block;
+  color: var(--clr-accent);
+  margin-top: 0.06em;
+  letter-spacing: 0.015em;
+}
+
+.hero-name .name-flourish {
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: inherit;
+  line-height: inherit;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 0;
+  opacity: 1;
 }
 
 .hero-name em {
-  font-style: italic;
-  font-weight: 300;
+  font-style: normal;
   color: var(--clr-accent);
 }
 
 /* Typed subtitle */
 .hero-subtitle {
   font-family: var(--font-head);
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.2rem, 2.6vw, 1.65rem);
   font-weight: 400;
   font-style: italic;
   color: var(--clr-text-muted);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.85rem;
   letter-spacing: 0.02em;
-  min-height: 2rem;
+  min-height: 2.2rem;
 }
 
 .cursor {
@@ -384,20 +470,20 @@ section[id] {
 
 /* Hero intro */
 .hero-intro {
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: var(--clr-text-muted);
-  max-width: 520px;
-  line-height: 1.75;
-  margin-bottom: 2.75rem;
-  font-weight: 300;
+  max-width: 550px;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  font-weight: 350;
 }
 
 /* CTA buttons */
 .hero-cta {
   display: flex;
-  gap: 1rem;
+  gap: 1.15rem;
   flex-wrap: wrap;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
 
 /* Scroll cue */
@@ -406,6 +492,8 @@ section[id] {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .scroll-line {
@@ -428,6 +516,11 @@ section[id] {
   color: var(--clr-text-muted);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.scroll-cue:hover .scroll-text {
+  color: var(--clr-accent);
 }
 
 
@@ -706,13 +799,14 @@ section[id] {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform var(--dur-med) var(--ease),
-              box-shadow var(--dur-med) var(--ease);
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 450ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 450ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(30,30,30,0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 44px rgba(30, 30, 30, 0.08);
 }
 
 /* Image placeholder */
@@ -722,143 +816,283 @@ section[id] {
   aspect-ratio: 16/9;
 }
 
-.project-img-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Each placeholder has a unique color scheme */
-.project-img-1 { background: #C8D8CE; }
-.project-img-2 { background: #C8CDD8; }
-.project-img-3 { background: #D8C8C8; }
-.project-img-4 { background: #D8D4C8; }
-.project-img-5 { background: #C8D4D8; }
-.project-img-6 { background: #D0C8D8; }
-
-/* Overlay on hover */
+/* Overlay positioning for category badge */
 .project-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(30,30,30,0);
+  background: transparent;
   display: flex;
   align-items: flex-start;
-  padding: 1rem;
-  transition: background var(--dur-med) var(--ease);
+  padding: 1rem 1.15rem;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .project-card:hover .project-overlay {
-  background: rgba(30,30,30,0.08);
+  background: transparent;
 }
 
+/* Category Badge — Flat 2D Minimalist Architectural Tag */
 .project-category {
-  font-size: 0.68rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: var(--clr-text);
-  color: var(--clr-bg);
-  padding: 0.3rem 0.65rem;
+  line-height: 1;
+  color: #FAF7F2;
+  background: #2D4836;
+  border: 1px solid #233B2B;
+  padding: 0.32rem 0.65rem;
   border-radius: 2px;
-  font-weight: 400;
+  pointer-events: auto;
+  transition: background 300ms var(--ease),
+              border-color 300ms var(--ease);
 }
 
-/* Placeholder art — CSS geometric shapes */
-.placeholder-art {
+.project-card:hover .project-category {
+  background: #233B2B;
+  border-color: #1A2B20;
+}
+
+/* ----------------------------------------------------------
+   BRAND IDENTITY HERO COVERS (Project Thumbnails)
+   Aesthetic: Warm Editorial Minimalist Canvas
+---------------------------------------------------------- */
+.project-brand-hero {
   width: 100%;
   height: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  background-color: #FAF8F5;
+  border-bottom: 1px solid var(--clr-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95),
+              inset 0 -1px 0 rgba(30, 30, 30, 0.02);
+  transition: transform var(--dur-med) var(--ease),
+              background var(--dur-med) var(--ease),
+              box-shadow var(--dur-med) var(--ease);
+}
+
+/* Studio specular light glaze */
+.project-brand-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 55%);
+  z-index: 1;
+}
+
+/* Tactile archival paper micro-grain texture */
+.project-brand-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+
+/* Subtle architectural coordinate grid */
+.brand-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 30, 30, 0.038) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 30, 30, 0.038) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at 50% 50%, black 25%, rgba(0, 0, 0, 0.4) 60%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, rgba(0, 0, 0, 0.4) 60%, transparent 85%);
+  transition: opacity var(--dur-med) var(--ease);
+}
+
+/* Content lockup — Minimalist & Centered */
+.brand-content {
   position: relative;
-  opacity: 0.35;
-}
-
-.art-bar {
-  position: absolute;
-  bottom: 0;
-  width: 18%;
-  border-radius: 2px 2px 0 0;
-  background: rgba(30,30,30,0.5);
-}
-.art-bar-1 { height: 60%; left: 15%; }
-.art-bar-2 { height: 80%; left: 38%; }
-.art-bar-3 { height: 45%; left: 61%; }
-.art-circle {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 2px solid rgba(30,30,30,0.5);
-  position: absolute;
-  right: 15%; top: 20%;
-}
-
-.art-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 6px;
-  opacity: 0.5;
-}
-.art-grid > div {
-  width: 22px; height: 22px;
-  background: rgba(30,30,30,0.5);
-  border-radius: 2px;
-}
-
-.art-lines {
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 60%;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+  padding: 1.5rem 1rem;
 }
-.art-lines > div {
-  height: 2px;
-  background: rgba(30,30,30,0.5);
-  border-radius: 2px;
-}
-.art-lines > div:nth-child(2) { width: 75%; }
-.art-lines > div:nth-child(3) { width: 55%; }
-.art-lines > div:nth-child(4) { width: 80%; }
-.art-lines > div:nth-child(5) { width: 40%; }
 
-.art-circles { position: relative; width: 80px; height: 80px; }
-.ac {
-  position: absolute;
-  border-radius: 50%;
-  border: 2px solid rgba(30,30,30,0.5);
-}
-.ac-1 { width: 80px; height: 80px; top: 0; left: 0; }
-.ac-2 { width: 50px; height: 50px; top: 15px; left: 15px; }
-.ac-3 { width: 22px; height: 22px; top: 29px; left: 29px; background: rgba(30,30,30,0.4); border: none; }
-
-.art-wave {
+/* Icon wrap */
+.brand-icon-wrap {
+  width: 48px;
+  height: 48px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 65%;
+  align-items: center;
+  justify-content: center;
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 450ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-.art-wave > div {
-  height: 3px;
-  background: rgba(30,30,30,0.45);
-  border-radius: 2px;
-  transform-origin: left;
-}
-.art-wave > div:nth-child(1) { width: 100%; }
-.art-wave > div:nth-child(2) { width: 70%; }
-.art-wave > div:nth-child(3) { width: 85%; }
 
-.art-dots {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px;
+.brand-icon-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
 }
-.art-dots > div {
-  width: 10px; height: 10px;
-  background: rgba(30,30,30,0.45);
-  border-radius: 50%;
+
+/* Hover state for the brand mark */
+.project-card:hover .brand-icon-wrap {
+  transform: translateY(-3px) scale(1.05);
 }
+
+/* Typography lockup — Exact Authentic Brand Signatures */
+.brand-typography {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+/* 1. Calibrate Wordmark — Authentic Hermes Mandarin & Qaveria Typography */
+.cal-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.cal-wordmark .cal-brand-c {
+  font-family: 'Bugenvil', 'Cormorant', Georgia, serif;
+  font-size: 2.15rem;
+  font-weight: normal;
+  color: #EA580C;
+  line-height: 1;
+}
+
+.cal-wordmark .cal-brand-body {
+  font-family: 'Qaveria', 'Cormorant', Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: normal;
+  color: var(--clr-text);
+  letter-spacing: 0.02em;
+  margin-left: 2px;
+  line-height: 1;
+}
+
+/* 2. Algorithm Visualizer Wordmark */
+.av-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.av-wordmark .av-bold {
+  font-family: 'Syne', var(--font-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--clr-text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.av-wordmark .av-light {
+  font-family: var(--font-head);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--clr-text-muted);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  margin-left: 0.35rem;
+}
+
+/* 3. Smart Split Wordmark */
+.ss-wordmark {
+  font-family: 'Plus Jakarta Sans', var(--font-body);
+  font-size: 1.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.ss-wordmark .ss-smart {
+  font-weight: 800;
+  color: var(--clr-text);
+  letter-spacing: -0.03em;
+}
+
+.ss-wordmark .ss-split {
+  font-weight: 500;
+  color: #059669;
+  letter-spacing: -0.01em;
+  margin-left: 0.2rem;
+}
+
+/* Brand Atmospheric Lighting & Surface Washes */
+.brand-ambient-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.project-card:hover .brand-ambient-glow {
+  opacity: 1;
+}
+
+/* 1. Calibrate — Warm Hermès Mandarin Atmospheric Wash */
+.brand-hero-calibrate {
+  background: 
+    radial-gradient(circle at 50% 42%, rgba(234, 88, 12, 0.055) 0%, rgba(251, 146, 60, 0.02) 48%, transparent 72%),
+    radial-gradient(circle at 50% 38%, #FAF8F5 0%, #EFE8DE 100%);
+}
+.brand-hero-calibrate .brand-ambient-glow {
+  background: radial-gradient(circle at 50% 42%, rgba(234, 88, 12, 0.09) 0%, rgba(251, 146, 60, 0.035) 52%, transparent 75%);
+}
+.brand-hero-calibrate .brand-icon-wrap {
+  filter: drop-shadow(0 3px 10px rgba(234, 88, 12, 0.18));
+}
+.project-card:hover .brand-hero-calibrate .brand-icon-wrap {
+  filter: drop-shadow(0 6px 18px rgba(234, 88, 12, 0.32));
+}
+
+/* 2. Algorithm Visualizer — Deep Cobalt Architectural Aura */
+.brand-hero-algo {
+  background: 
+    radial-gradient(circle at 50% 42%, rgba(0, 85, 255, 0.045) 0%, rgba(59, 130, 246, 0.018) 48%, transparent 72%),
+    radial-gradient(circle at 50% 38%, #FAF8F5 0%, #EAE7E1 100%);
+}
+.brand-hero-algo .brand-ambient-glow {
+  background: radial-gradient(circle at 50% 42%, rgba(0, 85, 255, 0.08) 0%, rgba(59, 130, 246, 0.03) 52%, transparent 75%);
+}
+.brand-hero-algo .brand-icon-wrap {
+  filter: drop-shadow(0 3px 10px rgba(0, 85, 255, 0.16));
+}
+.project-card:hover .brand-hero-algo .brand-icon-wrap {
+  filter: drop-shadow(0 6px 18px rgba(0, 85, 255, 0.30));
+}
+
+/* 3. SmartSplit — Botanical Mint & Settlement Emerald Aura */
+.brand-hero-smartsplit {
+  background: 
+    radial-gradient(circle at 50% 42%, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.018) 48%, transparent 72%),
+    radial-gradient(circle at 50% 38%, #FAF8F5 0%, #EBE8E0 100%);
+}
+.brand-hero-smartsplit .brand-ambient-glow {
+  background: radial-gradient(circle at 50% 42%, rgba(5, 150, 105, 0.085) 0%, rgba(16, 185, 129, 0.03) 52%, transparent 75%);
+}
+.brand-hero-smartsplit .brand-icon-wrap {
+  filter: drop-shadow(0 3px 10px rgba(5, 150, 105, 0.18));
+}
+.project-card:hover .brand-hero-smartsplit .brand-icon-wrap {
+  filter: drop-shadow(0 6px 18px rgba(5, 150, 105, 0.32));
+}
+
 
 /* Project card body */
 .project-body {
@@ -1110,12 +1344,15 @@ section[id] {
 
 
 /* ----------------------------------------------------------
-   13. FOOTER
+   13. FOOTER (Product-Matched Deep Botanical Forest Canvas)
 ---------------------------------------------------------- */
 .site-footer {
-  background: var(--clr-text);
-  color: rgba(246, 242, 236, 0.6);
-  padding: 3.5rem 0 2rem;
+  background: #18241C; /* Deep architectural botanical forest green matching --clr-accent */
+  color: rgba(246, 242, 236, 0.65);
+  padding: 4rem 0 2.25rem;
+  border-top: 1px solid rgba(61, 90, 71, 0.35); /* Forest green accent hairline */
+  position: relative;
+  overflow: hidden;
 }
 
 .footer-inner {
@@ -1124,25 +1361,26 @@ section[id] {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(246,242,236,0.1);
-  margin-bottom: 1.5rem;
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid rgba(246, 242, 236, 0.08);
+  margin-bottom: 1.75rem;
 }
 
 .footer-initials {
   font-family: var(--font-head);
-  font-size: 1.8rem;
+  font-size: 1.85rem;
   font-weight: 600;
   color: var(--clr-bg);
   letter-spacing: 0.04em;
   display: block;
   line-height: 1;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .footer-tagline {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   letter-spacing: 0.05em;
+  color: rgba(246, 242, 236, 0.6);
   margin: 0;
 }
 
@@ -1150,50 +1388,80 @@ section[id] {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .footer-nav a {
   font-size: 0.78rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(246,242,236,0.5);
+  color: rgba(246, 242, 236, 0.65);
+  text-decoration: none;
   transition: color var(--dur-fast) var(--ease);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.footer-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #FFFFFF;
+  transition: width var(--dur-med) var(--ease);
 }
 
 .footer-nav a:hover {
-  color: var(--clr-bg);
+  color: #FFFFFF;
+}
+
+.footer-nav a:hover::after {
+  width: 100%;
 }
 
 .footer-social {
   display: flex;
-  gap: 1rem;
+  gap: 0.85rem;
+  align-items: center;
 }
 
 .footer-social a {
-  width: 38px; height: 38px;
-  border: 1px solid rgba(246,242,236,0.15);
-  border-radius: 2px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(246, 242, 236, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(246,242,236,0.5);
+  color: rgba(246, 242, 236, 0.65);
   font-size: 0.95rem;
-  transition: border-color var(--dur-fast) var(--ease),
-              color var(--dur-fast) var(--ease),
-              transform var(--dur-fast) var(--ease);
+  transition: all var(--dur-fast) var(--ease);
 }
 
 .footer-social a:hover {
-  border-color: var(--clr-bg);
-  color: var(--clr-bg);
+  border-color: #FFFFFF;
+  background: var(--clr-accent);
+  color: #FFFFFF;
   transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-bottom p {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   text-align: center;
   letter-spacing: 0.04em;
+  color: rgba(246, 242, 236, 0.5);
   margin: 0;
+  line-height: 1.6;
 }
 
 
@@ -1202,10 +1470,9 @@ section[id] {
 ---------------------------------------------------------- */
 
 /* Initial state — hidden */
-.reveal,
-.fade-in-up {
+.reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
 }
 
 /* Triggered state — visible (added by IntersectionObserver in JS) */
@@ -1217,98 +1484,23 @@ section[id] {
   transition-delay: var(--delay, 0s);
 }
 
-/* Hero elements use CSS animation directly (page load) */
+/* Hero elements use classic, elegant editorial reveal */
 .fade-in-up {
-  animation: fadeInUp 0.7s var(--ease) both;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeInUp 0.75s var(--ease) both;
   animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-
-/* ----------------------------------------------------------
-   15. RESPONSIVE BREAKPOINTS
----------------------------------------------------------- */
-
-/* Tablet */
-@media (max-width: 991px) {
-  :root {
-    --section-py: 5rem;
-  }
-
-  .about-text {
-    padding-right: 0;
-  }
-
-  .section-header {
-    margin-bottom: 3rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 767px) {
-  :root {
-    --section-py: 4rem;
-  }
-
-  .hero-name {
-    font-size: clamp(3.5rem, 14vw, 5rem);
-  }
-
-  .hero-cta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero-cta .btn-primary-custom,
-  .hero-cta .btn-outline-custom {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .scroll-cue { display: none; }
-
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-  }
-
-  .footer-nav {
-    gap: 1.25rem;
-  }
-
-  .contact-form {
-    padding: 1.75rem;
-  }
-
-  .edu-timeline {
-    padding-left: 0.5rem;
-  }
-
-  .section-header {
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .section-rule {
-    display: none;
-  }
-}
-
-/* Very small screens */
-@media (max-width: 400px) {
-  .hero-name {
-    font-size: clamp(3rem, 16vw, 4rem);
   }
 }
 
@@ -1332,17 +1524,40 @@ textarea:focus-visible {
   color: #fff;
 }
 
-/* Scrollbar (webkit) */
+/* Scrollbar (webkit) - Seamless Transparent Track to eliminate right-edge white gutter */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--clr-bg);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--clr-border);
+  background: rgba(61, 90, 71, 0.28);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--clr-text-muted);
+  background: var(--clr-accent);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .coord-axes line,
+  .coord-axes .axis-north,
+  .coord-axes .axis-south,
+  .coord-axes .axis-west,
+  .coord-axes .axis-east,
+  .blueprint-crosshairs g,
+  .harmonic-layer .phi-spiral,
+  .blueprint-base-grid,
+  .blueprint-crosshairs,
+  .blueprint-dimensions,
+  .datum-origin,
+  .compass-ring,
+  .surveyor-transit,
+  .blueprint-telemetry {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
 }
