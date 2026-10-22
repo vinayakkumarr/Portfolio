@@ -8,6 +8,7 @@
  *   4. Scroll    — smooth scrolling with fixed-nav offset
  *   5. Contact   — client-side validation + Web3Forms AJAX submit
  *   6. Footer    — current year auto-update
+ *   7. Blueprint — Hero theodolite & harmonic telemetry interaction
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -378,4 +379,157 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 (function setYear() {
   const el = $('#year');
   if (el) el.textContent = new Date().getFullYear();
+})();
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. HERO BLUEPRINT — THEODOLITE & HARMONIC TELEMETRY
+───────────────────────────────────────────────────────────── */
+(function initHeroBlueprint() {
+  const heroSection   = $('.hero-section');
+  const blueprintSvg  = $('#heroBlueprintSvg');
+  const transitGroup  = $('#targetTransit');
+  const compassGroup  = $('#targetCompass');
+  const telemetryTime = $('#telemetryTime');
+  const telemetryRows = $$('.blueprint-telemetry .telemetry-row');
+
+  if (!heroSection || !blueprintSvg) return;
+
+  /* ── 1. Live Indian Standard Time (IST) Clock ─────────────── */
+  function updateIST() {
+    if (!telemetryTime) return;
+    try {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Kolkata',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      telemetryTime.textContent = timeStr;
+    } catch {
+      const d = new Date();
+      telemetryTime.textContent = d.toTimeString().split(' ')[0];
+    }
+  }
+  updateIST();
+  setInterval(updateIST, 1000);
+
+  /* ── 2. Interactive Telemetry Row Hover Highlight ─────────── */
+  const targetMap = {
+    origin:    '#targetOrigin',
+    coord:     '#targetCoord',
+    interests: '#targetHarmonic',
+    languages: '#targetTransit',
+    time:      '#targetCompass'
+  };
+
+  telemetryRows.forEach((row) => {
+    const key       = row.getAttribute('data-target');
+    const targetSel = targetMap[key];
+    if (!targetSel) return;
+    const targetEl = blueprintSvg.querySelector(targetSel);
+    if (!targetEl) return;
+
+    row.addEventListener('mouseenter', () => {
+      targetEl.classList.add('highlight-active');
+    });
+    row.addEventListener('mouseleave', () => {
+      targetEl.classList.remove('highlight-active');
+    });
+  });
+
+  /* ── 3. Smooth Outer Circle Directional Shift ─────────────── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const SVG_CENTER_X = 360;
+  const SVG_CENTER_Y = 300;
+
+  let targetShiftX = 0;
+  let targetShiftY = 0;
+  let currentShiftX= 0;
+  let currentShiftY= 0;
+
+  // Release intro animation so user interaction has full transform control
+  function releaseCompassAnimation() {
+    if (compassGroup && !compassGroup.classList.contains('is-assembled')) {
+      compassGroup.classList.add('is-assembled');
+      compassGroup.style.animation = 'none';
+      compassGroup.style.opacity = '1';
+    }
+  }
+
+  if (compassGroup) {
+    compassGroup.addEventListener('animationend', releaseCompassAnimation, { once: true });
+    setTimeout(releaseCompassAnimation, 2100);
+  }
+
+  function onMouseMove(e) {
+    // Unlock animation as soon as user interacts
+    releaseCompassAnimation();
+
+    const rect = blueprintSvg.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+
+    // True screen pixel center of the circle (cx=360, cy=300 in 600x600 viewBox)
+    const circleCenterX = rect.left + rect.width  * (SVG_CENTER_X / 600);
+    const circleCenterY = rect.top  + rect.height * (SVG_CENTER_Y / 600);
+
+    // Exact vector from circle center to mouse position on screen
+    const dx = e.clientX - circleCenterX;
+    const dy = e.clientY - circleCenterY;
+    const dist = Math.hypot(dx, dy);
+
+    // Natural circular influence zone around the circle
+    const maxActiveRadius = Math.max(rect.width * 0.95, 460);
+
+    if (dist < maxActiveRadius) {
+      // Smooth falloff curve: 1.0 at center, smoothly easing to 0.0 at the outer boundary
+      const falloff = Math.cos((dist / maxActiveRadius) * (Math.PI * 0.5));
+      const shiftMagnitude = 28 * Math.min(dist / 220, 1) * falloff;
+
+      // Pure directional shift along the exact cursor angle in all 360°
+      targetShiftX = dist > 0 ? (dx / dist) * shiftMagnitude : 0;
+      targetShiftY = dist > 0 ? (dy / dist) * shiftMagnitude : 0;
+    } else {
+      // Outside active radius: smoothly returns to resting center
+      targetShiftX = 0;
+      targetShiftY = 0;
+    }
+  }
+
+  function onMouseLeave() {
+    targetShiftX = 0;
+    targetShiftY = 0;
+  }
+
+  heroSection.addEventListener('mousemove', onMouseMove, { passive: true });
+  heroSection.addEventListener('mouseleave', onMouseLeave, { passive: true });
+
+  function renderLoop() {
+    // Silky smooth spring interpolation (fluid 60fps glide)
+    const lerpFactor = 0.085;
+    currentShiftX += (targetShiftX - currentShiftX) * lerpFactor;
+    currentShiftY += (targetShiftY - currentShiftY) * lerpFactor;
+
+    // Outer circle smoothly shifts in the exact direction of the cursor (all 360°)
+    if (compassGroup) {
+      const tx = currentShiftX.toFixed(2);
+      const ty = currentShiftY.toFixed(2);
+      compassGroup.style.transform = `translate(${tx}px, ${ty}px)`;
+      compassGroup.setAttribute('transform', `translate(${tx}, ${ty})`);
+    }
+
+    // Keep center surveyor transit anchored at home datum
+    if (transitGroup) {
+      transitGroup.setAttribute('transform', `translate(${SVG_CENTER_X}, ${SVG_CENTER_Y})`);
+    }
+
+    requestAnimationFrame(renderLoop);
+  }
+
+  requestAnimationFrame(renderLoop);
 })();

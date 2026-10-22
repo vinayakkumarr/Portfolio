@@ -384,6 +384,531 @@ section[id] {
   z-index: 2;
 }
 
+/* ----------------------------------------------------------
+   ARCHITECTURAL BLUEPRINT & GEOGRAPHIC WATERMARK
+---------------------------------------------------------- */
+.hero-blueprint {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  user-select: none;
+}
+
+.blueprint-svg {
+  width: 90%;
+  max-width: 550px;
+  height: auto;
+  opacity: 0.88;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.02));
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-section:hover .blueprint-svg {
+  opacity: 0.98;
+}
+
+/* ── Architectural Drafting Dismantled-to-Assembled Sequence ── */
+@keyframes assembleFromNorth {
+  0% {
+    opacity: 0;
+    transform: translateY(-55px);
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes assembleFromSouth {
+  0% {
+    opacity: 0;
+    transform: translateY(55px);
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes assembleFromWest {
+  0% {
+    opacity: 0;
+    transform: translateX(-55px);
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes assembleFromEast {
+  0% {
+    opacity: 0;
+    transform: translateX(55px);
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes assembleFromNW {
+  0% {
+    opacity: 0;
+    transform: translate(-30px, -30px);
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes assembleFromNE {
+  0% {
+    opacity: 0;
+    transform: translate(30px, -30px);
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes assembleFromSW {
+  0% {
+    opacity: 0;
+    transform: translate(-30px, 30px);
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes assembleFromSE {
+  0% {
+    opacity: 0;
+    transform: translate(30px, 30px);
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes assembleRing {
+  0% {
+    opacity: 0;
+    transform: scale(1.12) rotate(16deg);
+  }
+  35% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes assembleCircleOuter {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes assembleCircleInner {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes assembleDatum {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blueprintSpiralDraw {
+  0% {
+    stroke-dashoffset: 900;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes blueprintFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blueprintCardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 0.63;
+    transform: translateY(0);
+  }
+}
+
+/* 4 Coordinate Axes slide in from exploded positions and snap at center */
+.coord-axes .axis-north {
+  animation: assembleFromNorth 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.78s both;
+}
+
+.coord-axes .axis-south {
+  animation: assembleFromSouth 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.78s both;
+}
+
+.coord-axes .axis-west {
+  animation: assembleFromWest 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.78s both;
+}
+
+.coord-axes .axis-east {
+  animation: assembleFromEast 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.78s both;
+}
+
+/* 4 Quadrant Crosshairs converge inward from diagonal corners */
+.blueprint-crosshairs .crosshair-nw {
+  animation: assembleFromNW 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+.blueprint-crosshairs .crosshair-ne {
+  animation: assembleFromNE 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+.blueprint-crosshairs .crosshair-sw {
+  animation: assembleFromSW 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+.blueprint-crosshairs .crosshair-se {
+  animation: assembleFromSE 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+/* Concentric Circles converge from expanded/contracted scales */
+.blueprint-base-grid .grid-circle-outer {
+  animation: assembleCircleOuter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+  transform-origin: 360px 300px;
+}
+
+.blueprint-base-grid .grid-circle-mid {
+  animation: blueprintFadeIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.70s both;
+}
+
+.blueprint-base-grid .grid-circle-inner {
+  animation: assembleCircleInner 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+  transform-origin: 360px 300px;
+}
+
+/* Outer Compass Ring smoothly settles inward from exploded angle */
+.compass-ring {
+  animation: assembleRing 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.70s both;
+  transform-origin: 360px 300px;
+  transition: opacity 400ms ease;
+  will-change: transform;
+}
+
+.compass-ring.is-assembled {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* Datum center locks as axes meet */
+.datum-origin {
+  animation: assembleDatum 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.05s both;
+  transform-origin: 360px 300px;
+}
+
+/* Golden spiral curve draws along phi path */
+.harmonic-layer .phi-spiral {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: blueprintSpiralDraw 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.92s forwards;
+}
+
+/* Background dimensions and transit fade in softly */
+.blueprint-dimensions,
+.surveyor-transit {
+  opacity: 0;
+  animation: blueprintFadeIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
+}
+
+/* SVG Highlight states on Telemetry Hover */
+.blueprint-svg .highlight-target {
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blueprint-svg .highlight-target line,
+.blueprint-svg .highlight-target path,
+.blueprint-svg .highlight-target circle,
+.blueprint-svg .highlight-target rect {
+  transition: stroke 300ms ease, stroke-width 300ms ease, opacity 300ms ease;
+}
+
+.blueprint-svg .highlight-target text {
+  transition: fill 300ms ease, opacity 300ms ease;
+}
+
+.blueprint-svg .highlight-target.highlight-active line,
+.blueprint-svg .highlight-target.highlight-active path,
+.blueprint-svg .highlight-target.highlight-active circle,
+.blueprint-svg .highlight-target.highlight-active rect {
+  stroke: var(--clr-accent) !important;
+  opacity: 1 !important;
+}
+
+.blueprint-svg .highlight-target.highlight-active text {
+  fill: var(--clr-accent) !important;
+  opacity: 1 !important;
+}
+
+.blueprint-svg .harmonic-layer.highlight-active .phi-spiral {
+  stroke: var(--clr-accent) !important;
+  stroke-width: 2.2px !important;
+  opacity: 1 !important;
+}
+
+.blueprint-svg .datum-origin.highlight-active circle {
+  fill: var(--clr-accent) !important;
+  stroke: var(--clr-accent) !important;
+}
+
+/* Minimalist Architectural Spec Sheet Telemetry Box — Overall Opacity Balance */
+.blueprint-telemetry {
+  position: absolute;
+  right: 8%;
+  bottom: 11%;
+  width: 345px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.95rem 1.15rem;
+  background: rgba(250, 248, 245, 0.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(61, 90, 71, 0.18);
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 0.60rem;
+  line-height: 1.35;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.022);
+  pointer-events: auto;
+  contain: layout style;
+  opacity: 0.63;
+  transform: translateY(0);
+  animation: blueprintCardReveal 1.05s cubic-bezier(0.16, 1, 0.3, 1) 1.15s backwards;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.35s ease;
+}
+
+.blueprint-telemetry:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  border-color: rgba(61, 90, 71, 0.45);
+  box-shadow: 0 10px 30px rgba(61, 90, 71, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Architectural corner brackets (┌ ┘) */
+.blueprint-telemetry::before,
+.blueprint-telemetry::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  transition: border-color 0.25s ease;
+}
+
+.blueprint-telemetry::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid var(--clr-accent);
+  border-left: 1.5px solid var(--clr-accent);
+}
+
+.blueprint-telemetry::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid var(--clr-accent);
+  border-right: 1.5px solid var(--clr-accent);
+}
+
+/* Telemetry Header — Level 1: Eyebrow Lockup */
+.telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.04rem 0.35rem 0.45rem;
+  margin-bottom: 0.22rem;
+  border-bottom: 1px solid rgba(61, 90, 71, 0.16);
+}
+
+.telemetry-title {
+  font-family: var(--font-body);
+  font-size: 0.61rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clr-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.telemetry-title::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 1.5px;
+  background: var(--clr-accent);
+}
+
+/* Telemetry Row Interaction — Category Accent Bar */
+.telemetry-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  cursor: default;
+  padding: 0.20rem 0.40rem;
+  border-radius: 2px;
+  border-left: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.telemetry-row:hover {
+  background: rgba(61, 90, 71, 0.08);
+  border-left-color: var(--clr-accent);
+}
+
+/* Level 2: Category Keys / Tags */
+.telemetry-tag {
+  font-weight: 600;
+  color: var(--clr-accent);
+  min-width: 74px;
+  flex-shrink: 0;
+  font-size: 0.57rem;
+  letter-spacing: 0.14em;
+  opacity: 0.92;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.telemetry-row:hover .telemetry-tag {
+  opacity: 1;
+  color: var(--clr-accent);
+}
+
+/* Level 3: Primary Data Content */
+.telemetry-data {
+  color: #4A4642;
+  font-weight: 400;
+  white-space: nowrap;
+  font-size: 0.59rem;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0.055em;
+  transition: color 0.2s ease;
+}
+
+.telemetry-row:hover .telemetry-data {
+  color: var(--clr-text);
+}
+
+/* Level 4: Inline Annotations & Language Notes (Perfect Baseline Alignment) */
+.lang-note {
+  font-size: 0.82em;
+  font-weight: 500;
+  color: var(--clr-accent);
+  letter-spacing: 0.03em;
+  vertical-align: baseline;
+  transition: color 0.2s ease;
+}
+
+.telemetry-row:hover .lang-note {
+  color: var(--clr-accent);
+  font-weight: 600;
+}
+
+/* Level 5: Live Clock */
+#telemetryTime {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--clr-text);
+  transition: color 0.2s ease;
+}
+
+.telemetry-row:hover #telemetryTime {
+  color: var(--clr-accent);
+  font-weight: 600;
+}
+
 /* "Available" label */
 .hero-label {
   display: inline-flex;
