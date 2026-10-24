@@ -2326,6 +2326,109 @@ textarea:focus-visible {
   background: var(--clr-accent);
 }
 
+
+/* ----------------------------------------------------------
+   BESPOKE ARCHITECTURAL CURSOR & PRECISION RETICLE (Ultra-Sharp All States)
+---------------------------------------------------------- */
+/* Precision micro datum point */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--clr-accent);
+  box-shadow: 0 0 2.5px rgba(61, 90, 71, 0.4);
+  pointer-events: none;
+  z-index: 100000;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  transition: opacity 0.3s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-dot.is-visible {
+  opacity: 1;
+}
+
+.cursor-dot.is-hovering {
+  opacity: 0.15;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(0.5);
+}
+
+/* Translucent floating architectural reticle (High-Density Vector Downscale) */
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transform-origin: center center;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(0.5);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-follower svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* High-contrast, razor-sharp hairline rim */
+.cursor-follower .reticle-ring {
+  stroke: rgba(61, 90, 71, 0.78);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+/* High-contrast precision cardinal ticks */
+.cursor-follower .reticle-ticks {
+  stroke: rgba(61, 90, 71, 0.88);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: 28px 28px;
+}
+
+/* Visible state */
+.cursor-follower.is-visible {
+  opacity: 1;
+}
+
+/* Interactive hover state (links, buttons, inputs, tags) */
+.cursor-follower.is-hovering .reticle-ring {
+  stroke: var(--clr-accent);
+  stroke-width: 1.6px;
+}
+
+.cursor-follower.is-hovering .reticle-ticks {
+  stroke: var(--clr-accent);
+  transform: rotate(45deg);
+}
+
+/* Click state */
+.cursor-follower.is-clicking .reticle-ring {
+  stroke: var(--clr-accent);
+  stroke-width: 1.8px;
+}
+
+/* Hide on touchscreens, narrow mobile devices, or reduced motion */
+@media (hover: none) and (pointer: coarse), (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-follower {
+    display: none !important;
+  }
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .coord-axes line,

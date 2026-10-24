@@ -919,6 +919,28 @@
     </div>
   </footer>
 
+  <!-- Bespoke Architectural Cursor & Follower Reticle (High-Density Vector Downscale Architecture) -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursorFollower" aria-hidden="true">
+    <svg viewBox="0 0 56 56" width="28" height="28" shape-rendering="geometricPrecision">
+      <defs>
+        <radialGradient id="cursorLensGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(61, 90, 71, 0.22)" />
+          <stop offset="65%" stop-color="rgba(61, 90, 71, 0.08)" />
+          <stop offset="100%" stop-color="rgba(61, 90, 71, 0.00)" />
+        </radialGradient>
+      </defs>
+      <!-- Translucent Luminous Reticle Ring -->
+      <circle class="reticle-ring" cx="28" cy="28" r="20" fill="url(#cursorLensGlow)" />
+      <!-- Razor-Sharp Cardinal Datum Ticks -->
+      <g class="reticle-ticks">
+        <line x1="28" y1="3.5" x2="28" y2="12.5" />
+        <line x1="28" y1="43.5" x2="28" y2="52.5" />
+        <line x1="3.5" y1="28" x2="12.5" y2="28" />
+        <line x1="43.5" y1="28" x2="52.5" y2="28" />
+      </g>
+    </svg>
+  </div>
 
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" defer></script>

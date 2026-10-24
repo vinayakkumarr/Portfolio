@@ -9,6 +9,7 @@
  *   5. Contact   — client-side validation + Web3Forms AJAX submit
  *   6. Footer    — current year auto-update
  *   7. Blueprint — Hero theodolite & harmonic telemetry interaction
+ *   8. Cursor    — Smooth circular cursor follower with trailing delay
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -532,4 +533,149 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   }
 
   requestAnimationFrame(renderLoop);
+})();
+
+/* ─────────────────────────────────────────────────────────────
+   8. CURSOR FOLLOWER — BESPOKE ARCHITECTURAL LENS & PRECISION RETICLE
+───────────────────────────────────────────────────────────── */
+(function initCursorFollower() {
+  if (
+    window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    window.innerWidth < 768
+  ) {
+    return;
+  }
+
+  const dot = $('#cursorDot');
+  const follower = $('#cursorFollower');
+  if (!follower) return;
+
+  let mouseX = -100;
+  let mouseY = -100;
+
+  // Micro datum point (tight tracking)
+  let dotX = -100;
+  let dotY = -100;
+
+  // Floating lens reticle (physical inertia with luxurious delay)
+  let currentX = -100;
+  let currentY = -100;
+
+  // High-Density Downscale Architecture (Base container is 28px):
+  // Normal: 0.50 (14px) | Hover Zoom: 0.72 (20px) | Click: 0.38 (10.5px)
+  // Because scale is always <= 0.72 of native vector texture, it NEVER pixelates when zooming!
+  const SCALE_BASE  = 0.50;
+  const SCALE_HOVER = 0.72;
+  const SCALE_CLICK = 0.38;
+
+  let targetScale = SCALE_BASE;
+  let currentScale = SCALE_BASE;
+
+  let isVisible = false;
+  let isHovering = false;
+  let isClicking = false;
+  let lastTime = 0;
+
+  function onMouseMove(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (!isVisible) {
+      isVisible = true;
+      if (dot) dot.classList.add('is-visible');
+      follower.classList.add('is-visible');
+      dotX = mouseX;
+      dotY = mouseY;
+      currentX = mouseX;
+      currentY = mouseY;
+    }
+  }
+
+  function onMouseDown() {
+    isClicking = true;
+    targetScale = isHovering ? (SCALE_HOVER * 0.82) : SCALE_CLICK;
+    follower.classList.add('is-clicking');
+  }
+
+  function onMouseUp() {
+    isClicking = false;
+    targetScale = isHovering ? SCALE_HOVER : SCALE_BASE;
+    follower.classList.remove('is-clicking');
+  }
+
+  function onMouseLeave() {
+    isVisible = false;
+    if (dot) dot.classList.remove('is-visible');
+    follower.classList.remove('is-visible');
+  }
+
+  function onMouseEnter() {
+    isVisible = true;
+    if (dot) dot.classList.add('is-visible');
+    follower.classList.add('is-visible');
+  }
+
+  window.addEventListener('mousemove', onMouseMove, { passive: true });
+  window.addEventListener('mousedown', onMouseDown, { passive: true });
+  window.addEventListener('mouseup', onMouseUp, { passive: true });
+  document.addEventListener('mouseleave', onMouseLeave);
+  document.addEventListener('mouseenter', onMouseEnter);
+
+  // Delegate hover detection for clickable / interactive elements
+  const interactiveSelector = 'a, button, input, textarea, select, .btn, .nav-link, .tag, [role="button"], .telemetry-row';
+
+  document.addEventListener('mouseover', (e) => {
+    if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
+      isHovering = true;
+      targetScale = isClicking ? (SCALE_HOVER * 0.82) : SCALE_HOVER;
+      if (dot) dot.classList.add('is-hovering');
+      follower.classList.add('is-hovering');
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
+      if (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest(interactiveSelector)) {
+        isHovering = false;
+        targetScale = isClicking ? SCALE_CLICK : SCALE_BASE;
+        if (dot) dot.classList.remove('is-hovering');
+        follower.classList.remove('is-hovering');
+      }
+    }
+  }, { passive: true });
+
+  // Framerate-independent physics render loop
+  function renderCursor(now) {
+    if (!lastTime) lastTime = now;
+    const dt = Math.min((now - lastTime) / 1000, 0.05) || (1 / 60);
+    lastTime = now;
+
+    // Precision dot tracks tightly
+    const dotFactor = 1 - Math.exp(-32.0 * dt);
+    dotX += (mouseX - dotX) * dotFactor;
+    dotY += (mouseY - dotY) * dotFactor;
+
+    if (dot) {
+      dot.style.transform = `translate3d(${dotX.toFixed(1)}px, ${dotY.toFixed(1)}px, 0) translate(-50%, -50%)`;
+    }
+
+    // Follower lens trails with physical inertia and smooth delay
+    const posFactor = 1 - Math.exp(-4.6 * dt);
+    const scaleFactor = 1 - Math.exp(-12.0 * dt);
+    const vx = mouseX - currentX;
+    const vy = mouseY - currentY;
+
+    if (isVisible || Math.abs(vx) > 0.05 || Math.abs(vy) > 0.05 || Math.abs(currentScale - targetScale) > 0.005) {
+      currentX += vx * posFactor;
+      currentY += vy * posFactor;
+      currentScale += (targetScale - currentScale) * scaleFactor;
+
+      follower.style.transform = `translate3d(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px, 0) translate(-50%, -50%) scale(${currentScale.toFixed(3)})`;
+    }
+
+    requestAnimationFrame(renderCursor);
+  }
+
+  requestAnimationFrame(renderCursor);
 })();
